@@ -1,11 +1,12 @@
 const apiKey = '922e43f3a98d8aba52633511ec6358f3'; // Replace with your API key
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 var currentWeather = document.getElementById("current-weather");
-
-
+ 
+document.getElementById('search-button').addEventListener('click', () => {
+    const city = document.getElementById('search-input').value;
   
+//I want this information to be displayed on the page when the user searches for a city, then added to local storage
 
-function fetchWeather(city) {
     // Fetch current weather
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`)
     .then(response => response.json())
@@ -20,12 +21,13 @@ function fetchWeather(city) {
             <p>Humidity: ${data.main.humidity}%</p>
             <p>Weather: ${data.weather[0].description}</p>
     `;
-    localStorage.setItem('weatherData', JSON.stringify(data));
   });
-}
 
-  document.getElementById('search-button').addEventListener('click', () => {
-    const city = document.getElementById('search-input').value;
+// Remove city from search history if it's already there
+  const index = searchHistory.indexOf(city);
+  if (index > -1) {
+    searchHistory.splice(index, 1);
+  }
 
   // Fetch five-day forecast
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
@@ -47,9 +49,7 @@ function fetchWeather(city) {
           `;
           weatherContainer.appendChild(forecastElement);
         }
-      });
-
-      
+      });     
 
       // Update search history
       searchHistory = [city, ...searchHistory.slice(0, 9)];
