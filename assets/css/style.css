@@ -3,7 +3,9 @@ body {
   }
   
   #weather-container .card {
-    flex: 1 0 10%; /* This will make the cards take up 20% of the row's width */
+    flex: 1 0 15%; /* This will make the cards take up 15% of the row's width */
     margin: 0.5em;
+    background-color: #504d4d;
+    color: #fff;
   } 
   

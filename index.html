@@ -13,15 +13,20 @@
   </header>
   <div class="container">
     <div class="row">
-      <aside class="col-4 bg-light p-3"> <!--I want this to be an aside that take up 100% of the vh-->
+      <aside class="col-3 bg-light p-3"> 
         <h2>Search by City:</h2>
         <input type="text" id="search-input" class="form-control mb-2">
         <button id="search-button" class="btn btn-primary mb-2">Search</button>
         <hr>
         <ul id="search-history" class="list-group"></ul>
       </aside>
-      <main class="row col-8 align-item-right" id="weather-container"></main> <!--I want this to be to the right of the aside not wrap below the aside-->
-        
+      <section class="d-flex flex-column col-8"> <!--I want this to contain two row stacked on top of each other. The 1st row will
+        have the current weather for the selected city and take up the full row. The 2nd row will have the 5-day forecast cards.-->
+        <div  id="current-weather">
+            <p>This is the current weather</p>        
+        </div>
+        <main class="row" id="weather-container"></main>
+      </section>
     </div>
   </div>
   <script src="assets/js/script.js"></script>
