@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Get the latest weather forecast for your location with our Weather Dashboard.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Dashboard</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Weather Dashboard</h1>
-  <div id="weather-container"></div>
+  <header class="bg-primary text-white text-center p-4">
+    <h1>Weather Dashboard</h1>
+  </header>
+  <div class="container">
+    <div class="row">
+      <aside class="col-4 bg-light p-3">
+        <h2>Search by City:</h2>
+        <input type="text" id="search-input" class="form-control mb-2">
+        <button id="search-button" class="btn btn-primary mb-2">Search</button>
+        <hr>
+        <ul id="search-history" class="list-group"></ul>
+      </aside>
+      <main class="col-8" id="weather-container"></main>
+    </div>
+  </div>
   <script src="assets/js/script.js"></script>
 </body>
 </html>
+
