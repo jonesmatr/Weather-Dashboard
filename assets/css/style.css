@@ -9,3 +9,6 @@ body {
     color: #fff;
   } 
   
+  li:hover {
+    cursor: pointer;
+  }
