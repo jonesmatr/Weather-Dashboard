@@ -1,9 +1,29 @@
 const apiKey = '922e43f3a98d8aba52633511ec6358f3'; // Replace with your API key
 let searchHistory = [];
+var currentWeather = document.getElementById("current-weather");
 
 document.getElementById('search-button').addEventListener('click', () => {
   const city = document.getElementById('search-input').value;
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`)
+
+
+    // Fetch current weather
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+        const date = new Date();
+        const dateString = date.toLocaleDateString();
+        const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`; // Construct icon URL
+        currentWeather.innerHTML = `
+            <h2>${data.name} - (${dateString}) <img src="${iconUrl}" alt="Weather icon"></h2>
+            <p>Temperature: ${data.main.temp}°F</p>
+            <p>Wind Speed: ${data.wind.speed} mph</p>
+            <p>Humidity: ${data.main.humidity}%</p>
+            <p>Weather: ${data.weather[0].description}</p>
+    `;
+  });
+
+  // Fetch five-day forecast
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
     .then(response => response.json())
     .then(data => {
       const weatherContainer = document.getElementById('weather-container');
@@ -14,7 +34,10 @@ document.getElementById('search-button').addEventListener('click', () => {
           forecastElement.className = 'card p-3 mb-2';
           forecastElement.innerHTML = `
             <h2>${new Date(forecast.dt_txt).toLocaleDateString()}</h2>
-            <p>Temperature: ${forecast.main.temp}°K</p>
+            <p><img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png"/></p>
+            <p>Temperature: ${forecast.main.temp}°F</p>
+            <p>Wind Speed: ${forecast.wind.speed} mph</p>
+            <p>Humidity: ${forecast.main.humidity}%</p>
             <p>Weather: ${forecast.weather[0].description}</p>
           `;
           weatherContainer.appendChild(forecastElement);
