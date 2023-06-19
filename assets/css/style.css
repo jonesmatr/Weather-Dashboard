@@ -2,9 +2,8 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  #weather-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }  
+  #weather-container .card {
+    flex: 1 0 10%; /* This will make the cards take up 20% of the row's width */
+    margin: 0.5em;
+  } 
   

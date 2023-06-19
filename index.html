@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Dashboard</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 <body>
   <header class="bg-primary text-white text-center p-4">
@@ -12,14 +13,15 @@
   </header>
   <div class="container">
     <div class="row">
-      <aside class="col-4 bg-light p-3">
+      <aside class="col-4 bg-light p-3"> <!--I want this to be an aside that take up 100% of the vh-->
         <h2>Search by City:</h2>
         <input type="text" id="search-input" class="form-control mb-2">
         <button id="search-button" class="btn btn-primary mb-2">Search</button>
         <hr>
         <ul id="search-history" class="list-group"></ul>
       </aside>
-      <main class="col-8" id="weather-container"></main>
+      <main class="row col-8 align-item-right" id="weather-container"></main> <!--I want this to be to the right of the aside not wrap below the aside-->
+        
     </div>
   </div>
   <script src="assets/js/script.js"></script>
