@@ -72,7 +72,7 @@ fetchWeather(city);
     .then(data => {
       const weatherContainer = document.getElementById('weather-container');
       weatherContainer.innerHTML = '';
-      // Need to change this header so that it is above the cards and not to the left of them, which is pushing them to the right
+      // Need to change this header so that it is above the cards and not to the left of them, which is pushing
       const forecastHeading = document.createElement('h2');
       forecastHeading.textContent = '5-Day Forecast:';
       weatherContainer.appendChild(forecastHeading);
