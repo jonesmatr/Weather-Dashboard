@@ -12,3 +12,9 @@ body {
   li:hover {
     cursor: pointer;
   }
+
+  @media (max-width: 992px) {
+    #weather-container .card {
+      flex: 1 0 45%; /* This will make the cards take up 45% of the row's width */
+    }
+  }
