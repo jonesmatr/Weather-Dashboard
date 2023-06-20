@@ -67,31 +67,55 @@ fetchWeather(city);
   }
 
   // Fetch five-day forecast
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-      const weatherContainer = document.getElementById('weather-container');
-      weatherContainer.innerHTML = '';
-      // Need to change this header so that it is above the cards and not to the left of them, which is pushing
-      const forecastHeading = document.createElement('h2');
-      forecastHeading.textContent = '5-Day Forecast:';
-      weatherContainer.appendChild(forecastHeading);
+fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
+.then(response => response.json())
+.then(data => {
+  const weatherContainer = document.getElementById('weather-container');
+  weatherContainer.innerHTML = '';
 
-      data.list.forEach((forecast, index) => {
-        if (index % 8 === 0) { // Only take one forecast per day 
-          const forecastElement = document.createElement('div');
-          forecastElement.className = 'card p-3 mb-2';
-          forecastElement.innerHTML = `
-            <h2>${new Date(forecast.dt_txt).toLocaleDateString()}</h2>
-            <p><img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png"/></p>
-            <p>Temperature: ${forecast.main.temp}°F</p>
-            <p>Wind Speed: ${forecast.wind.speed} mph</p>
-            <p>Humidity: ${forecast.main.humidity}%</p>
-            <p>Weather: ${forecast.weather[0].description}</p>
-          `;
-          weatherContainer.appendChild(forecastElement);
-        }
-      });     
+  // Create a new div element for the heading
+  const headingDiv = document.createElement('div');
+  headingDiv.className = 'heading-div col-12';
+
+  // Add the <h2> element to the headingDiv
+  const forecastHeading = document.createElement('h2');
+  forecastHeading.textContent = '5-Day Forecast:';
+  headingDiv.appendChild(forecastHeading);
+
+  // Append the headingDiv to the weatherContainer
+  weatherContainer.appendChild(headingDiv);
+
+  // Create a new div element for the forecast cards
+  const forecastDiv = document.createElement('div');
+  forecastDiv.className = 'row forecast-div';
+
+  data.list.forEach((forecast, index) => {
+    if (index % 8 === 0) { // Only take one forecast per day
+      // Create a new div for each card
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'card-div';
+
+      const forecastElement = document.createElement('div');
+      forecastElement.className = 'card p-3 mb-2';
+      forecastElement.innerHTML = `
+        <h2>${new Date(forecast.dt_txt).toLocaleDateString()}</h2>
+        <p><img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png"/></p>
+        <p>Temperature: ${forecast.main.temp}°F</p>
+        <p>Wind Speed: ${forecast.wind.speed} mph</p>
+        <p>Humidity: ${forecast.main.humidity}%</p>
+        <p>Weather: ${forecast.weather[0].description}</p>
+      `;
+      cardDiv.appendChild(forecastElement);
+      forecastDiv.appendChild(cardDiv);
+    }
+  });
+
+  // Append the forecastDiv to the weatherContainer
+  weatherContainer.appendChild(forecastDiv);
+
+  // ... rest of your code ...
+});
+  
 
       // Update search history
       searchHistory = [city, ...searchHistory.slice(0, 9)];
@@ -111,5 +135,4 @@ fetchWeather(city);
         if (searchHistory.length > 0) {
           fetchWeather(searchHistory[0]);
         }
-});
 });
