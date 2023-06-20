@@ -20,7 +20,6 @@ async function fetchWeatherByLocation(lat, lon) {
     <p>Weather: ${data.weather[0].description}</p>
   `;
 }
-
   
   window.addEventListener('load', () => {
     if (navigator.geolocation) {
@@ -111,5 +110,3 @@ fetchWeather(city);
         }
 });
 });
-
-//Still need to add the weather information from previous searches into local storage. 
