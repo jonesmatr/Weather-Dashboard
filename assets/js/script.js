@@ -1,6 +1,6 @@
 const apiKey = '922e43f3a98d8aba52633511ec6358f3'; // API key
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || []; // Search history
-var currentWeather = document.getElementById("current-weather");
+var currentWeather = document.getElementById("current-weather"); //Create variable for current weather
 
 // Function to fetch weather data based on latitude and longitude
 async function fetchWeatherByLocation(lat, lon) {
@@ -8,7 +8,7 @@ async function fetchWeatherByLocation(lat, lon) {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
     const data = await response.json();
   
-     // Display the weather data
+     // Display the weather data 
   const date = new Date();
   const dateString = date.toLocaleDateString();
   const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`; // Construct icon URL
@@ -20,7 +20,7 @@ async function fetchWeatherByLocation(lat, lon) {
     <p>Weather: ${data.weather[0].description}</p>
   `;
 }
-  
+    //Get weather data for the user's current location
   window.addEventListener('load', () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -31,18 +31,16 @@ async function fetchWeatherByLocation(lat, lon) {
         fetchWeatherByLocation(lat, lon);
       });
     } else {
-      // Geolocation is not supported by this browser
+      // Display error message if Geolocation is not supported
       console.log('Geolocation is not supported by this browser.');
     }
     });
   
- 
+ // Event listener for search button
 document.getElementById('search-button').addEventListener('click', () => {
-    const city = document.getElementById('search-input').value;
-  
-//I want this information to be displayed on the page when the user searches for a city, then added to local storage
+    const city = document.getElementById('search-input').value;  
 
-    // Fetch current weather
+    // Fetch current weather data for the city that was searched for by the user
 function fetchWeather(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`)
     .then(response => response.json())
@@ -57,12 +55,12 @@ function fetchWeather(city) {
             <p>Humidity: ${data.main.humidity}%</p>
             <p>Weather: ${data.weather[0].description}</p>
     `;
-    localStorage.setItem('weatherData', JSON.stringify(data));
+    localStorage.setItem('weatherData', JSON.stringify(data));// Store weather data in local storage
   });
   
 }
 fetchWeather(city);
-// Remove city from search history if it's already there
+// Remove city from search history if it's already in the search history
   const index = searchHistory.indexOf(city);
   if (index > -1) {
     searchHistory.splice(index, 1);
@@ -74,8 +72,13 @@ fetchWeather(city);
     .then(data => {
       const weatherContainer = document.getElementById('weather-container');
       weatherContainer.innerHTML = '';
+      // Need to change this header so that it is above the cards and not to the left of them, which is pushing them to the right
+      const forecastHeading = document.createElement('h2');
+      forecastHeading.textContent = '5-Day Forecast:';
+      weatherContainer.appendChild(forecastHeading);
+
       data.list.forEach((forecast, index) => {
-        if (index % 8 === 0) { // Only take one forecast per day
+        if (index % 8 === 0) { // Only take one forecast per day 
           const forecastElement = document.createElement('div');
           forecastElement.className = 'card p-3 mb-2';
           forecastElement.innerHTML = `
