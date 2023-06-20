@@ -3,12 +3,31 @@ body {
   }
   
   #weather-container .card {
-    flex: 1 0 15%; /* This will make the cards take up 15% of the row's width */
+    flex: 1 0 10%; /* This will make the cards take up 15% of the row's width */
     margin: 0.5em;
     background-color: #504d4d;
     color: #fff;
   } 
+
+  #weather-container .card h2 {
+    font-size: 1em;
+  }
   
   li:hover {
     cursor: pointer;
   }
+
+  #current-weather {
+    border: 1px solid black;
+    padding-left: 2%;
+  }
+
+  @media (max-width: 992px) {
+    forecast-div {
+      flex: 1 0 30%; /* This will make the cards take up 45% of the row's width */
+    }
+    #weather-container .card h2 {
+      font-size: 2em;
+    }
+  }
+
