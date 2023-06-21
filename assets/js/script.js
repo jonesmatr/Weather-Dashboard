@@ -42,7 +42,6 @@ async function fetchWeatherByLocation(lat, lon) {
         `;
         weatherContainer.appendChild(forecastElement);
       }
-
     }); 
   };
 
@@ -92,8 +91,7 @@ fetchWeather(city);
     searchHistory.splice(index, 1);
   }
 
-  // Fetch five-day forecast
-
+// Fetch five-day forecast
 function fetchForecast(city) {
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
 .then(response => response.json())
@@ -106,7 +104,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial
       // Create a new div for each card
       const cardDiv = document.createElement('div');
       cardDiv.className = 'card-div';
-
+      // Create a new div for the forecast
       const forecastElement = document.createElement('div');
       forecastElement.className = 'card p-3 mb-2';
       forecastElement.innerHTML = `
@@ -142,10 +140,10 @@ fetchForecast(city);
     li.addEventListener('click', () => fetchForecast(city)); // Add event listener
     searchHistoryElement.appendChild(li);
   });
-
+      // Store search history in local storage
       localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   });
-
+  // Event listener for search history
   window.addEventListener('load', () => {
     if (searchHistory.length > 0) {
       fetchWeather(searchHistory[0]);
