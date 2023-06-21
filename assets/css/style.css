@@ -1,6 +1,17 @@
 body {
     font-family: Arial, sans-serif;
   }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+  
+  .card-div {
+    flex-grow: 1;
+  }
   
   #weather-container .card {
     flex: 1 0 10%; /* This will make the cards take up 15% of the row's width */
