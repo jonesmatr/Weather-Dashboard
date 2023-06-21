@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,29 +8,31 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link href="assets/css/style.css" rel="stylesheet" />
 </head>
+
 <body>
   <header class="bg-primary text-white text-center p-4">
     <h1>Weather Dashboard</h1>
   </header>
   <div class="container col-12 p-5">
     <div class="row justify-content-center">
-      <aside class="col-md-3 bg-light p-3"> 
+      <aside class="col-md-3 bg-light p-3">
         <h2>Search by City:</h2>
         <input type="text" id="search-input" class="form-control mb-2">
         <button id="search-button" class="btn btn-primary mb-2">Search</button>
         <hr>
         <ul id="search-history" class="list-group search-city"></ul>
       </aside>
-      <section class="d-flex flex-column col-md-8"> 
-        <div  id="current-weather">        
+      <section class="d-flex flex-column col-md-8">
+        <div id="current-weather">
         </div>
         <div>
-            <h2>5-Day Forecast:</h2>
-        <main class="row" id="weather-container"></main>
+          <h2>5-Day Forecast:</h2>
+          <main class="row" id="weather-container"></main>
         </div>
       </section>
     </div>
   </div>
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>

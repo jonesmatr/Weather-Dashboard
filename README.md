@@ -37,9 +37,11 @@ The following technologies were used to build this weather dashboard:
 To play the coding quiz challenge, follow these steps:
 
 1. Clone the repository to your local machine using the following command:
+
 ```bash
 git clone https://github.com/jonesmatr/Weather-Dashboard.git
-``` 
+```
+
 2. Open the `index.html` file in a web browser.
 
 ## Usage
