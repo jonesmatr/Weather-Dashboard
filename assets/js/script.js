@@ -142,24 +142,24 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial
 }
 fetchForecast(city);
 
+  // Update search history
+  searchHistory = [city, ...searchHistory.slice(0, 9)];
+  const searchHistoryElement = document.getElementById('search-history');
+  searchHistoryElement.innerHTML = '';
+  searchHistory.forEach(city => {
+    const li = document.createElement('li');
+    li.className = 'list-group-item';
+    li.textContent = city;
+    li.addEventListener('click', () => fetchWeather(city));
+    li.addEventListener('click', () => fetchForecast(city)); // Add event listener
+    searchHistoryElement.appendChild(li);
+  });
 
-      // Update search history
-      searchHistory = [city, ...searchHistory.slice(0, 9)];
-      const searchHistoryElement = document.getElementById('search-history');
-      searchHistoryElement.innerHTML = '';
-      searchHistory.forEach(city => {
-        const li = document.createElement('li');
-        li.className = 'list-group-item';
-        li.textContent = city;
-        li.addEventListener('click', () => fetchWeather(city));
-        li.addEventListener('click', () => fetchForecast(city)); // Add event listener
-        searchHistoryElement.appendChild(li);
-      });
       localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-    });
+  });
 
-    window.addEventListener('load', () => {
-        if (searchHistory.length > 0) {
-          fetchWeather(searchHistory[0]);
-        }
+  window.addEventListener('load', () => {
+    if (searchHistory.length > 0) {
+      fetchWeather(searchHistory[0]);
+    }
 });
