@@ -1,6 +1,42 @@
 const apiKey = '922e43f3a98d8aba52633511ec6358f3'; // API key
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || []; // Search history
 var currentWeather = document.getElementById("current-weather");
+//Add more variables here that get elements from the HTML page to use in the functions below
+//Can you use if statements to make the page display the weather for the city the user searches for?
+//Check 22-Stu_Review-Part-One in Module 6 for an example of how to use if statements to display information on the page
+
+// Function to fetch weather data based on latitude and longitude
+async function fetchWeatherByLocation(lat, lon) {
+  // Fetch current weather
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
+  const data = await response.json();
+
+  // Display the weather data
+  const date = new Date();
+  const dateString = date.toLocaleDateString();
+  const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`; // Construct icon URL
+  currentWeather.innerHTML = `
+    <h2>${data.name} - (${dateString}) <img src="${iconUrl}" alt="Weather icon"></h2>
+    <p>Temperature: ${data.main.temp}°F</p>
+    <p>Wind Speed: ${data.wind.speed} mph</p>
+    <p>Humidity: ${data.main.humidity}%</p>
+    <p>Weather: ${data.weather[0].description}</p>
+  `;
+}
+
+window.addEventListener('load', () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      // Fetch weather data for the user's current location
+      fetchWeatherByLocation(lat, lon);
+    });
+  } else {
+    // Geolocation is not supported by this browser
+    console.log('Geolocation is not supported by this browser.');
+  }
 
 // Function to fetch weather data based on latitude and longitude
 async function fetchWeatherByLocation(lat, lon) {
@@ -109,5 +145,4 @@ function fetchWeather(city) {
         }
 });
 });
-
-//Still need to add the weather information from previous searches into local storage. 
+});
