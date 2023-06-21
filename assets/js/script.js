@@ -101,17 +101,6 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial
   const weatherContainer = document.getElementById('weather-container');
   weatherContainer.innerHTML = '';
 
-  // Create a new div element for the heading
-  const headingDiv = document.createElement('div');
-  headingDiv.className = 'heading-div col-12';
-
-  // Append the headingDiv to the weatherContainer
-  weatherContainer.appendChild(headingDiv);
-
-  // Create a new div element for the forecast cards
-  const forecastDiv = document.createElement('div');
-  forecastDiv.className = 'flex-row forecast-div';
-
   data.list.forEach((forecast, index) => {
     if (index % 8 === 0) { // Only take one forecast per day
       // Create a new div for each card
@@ -128,8 +117,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial
         <p>Humidity: ${forecast.main.humidity}%</p>
         <p>Weather: ${forecast.weather[0].description}</p>
       `;
-      cardDiv.appendChild(forecastElement);
-      forecastDiv.appendChild(cardDiv);
+      weatherContainer.appendChild(forecastElement);
     }
   });
 
