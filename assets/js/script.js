@@ -5,6 +5,7 @@ var searchButton = document.getElementById("search-button");
 var searchCity = document.getElementById("search-input");
 var weatherContainer = document.getElementById("weather-container");
 const searchHistoryElement = document.getElementById('search-history');
+const city = document.getElementById('search-input');
 
 // Function to fetch weather data and five-day forecast based on latitude and longitude
 async function fetchWeatherByLocation(lat, lon) {
@@ -23,7 +24,7 @@ async function fetchWeatherByLocation(lat, lon) {
     <p>Humidity: ${data.main.humidity}%</p>
     <p>Weather: ${data.weather[0].description}</p>
   `;
-
+  
   const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
   const forecastData = await forecastResponse.json();
        
@@ -46,8 +47,6 @@ async function fetchWeatherByLocation(lat, lon) {
     }); 
   };
 
-
-
 window.addEventListener('load', () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
@@ -61,6 +60,13 @@ window.addEventListener('load', () => {
     // Geolocation is not supported by this browser
     console.log('Geolocation is not supported by this browser.');
   }
+});
+
+
+if (searchHistory.length > 0) {
+  fetchWeather(searchHistory[0]);
+}
+
   
  
 document.getElementById('search-button').addEventListener('click', () => {
@@ -68,7 +74,11 @@ document.getElementById('search-button').addEventListener('click', () => {
   
 //I want this information to be displayed on the page when the user searches for a city, then added to local storage
 
-
+// Remove city from search history if it's already there
+const index = searchHistory.indexOf(city);
+if (index > -1) {
+  searchHistory.splice(index, 1);
+}
 
 
     // Fetch current weather
@@ -92,11 +102,7 @@ function fetchWeather(city) {
 
 
 
-// Remove city from search history if it's already there
-  const index = searchHistory.indexOf(city);
-  if (index > -1) {
-    searchHistory.splice(index, 1);
-  }
+
 
 
 
@@ -144,6 +150,5 @@ function fetchWeather(city) {
         if (searchHistory.length > 0) {
           fetchWeather(searchHistory[0]);
         }
-});
 });
 });
