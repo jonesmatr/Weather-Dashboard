@@ -145,6 +145,3 @@ window.addEventListener('load', () => {
     fetchWeather(searchHistory[0]);
   }
 });
-
-//Clear search history after clicking search button
-
