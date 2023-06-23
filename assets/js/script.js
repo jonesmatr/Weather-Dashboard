@@ -21,7 +21,6 @@ async function fetchWeatherByLocation(lat, lon) {
     <p>Temperature: ${data.main.temp}°F</p>
     <p>Wind Speed: ${data.wind.speed} mph</p>
     <p>Humidity: ${data.main.humidity}%</p>
-    <p>Weather: ${data.weather[0].description}</p>
   `;
 
   const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
@@ -38,7 +37,6 @@ async function fetchWeatherByLocation(lat, lon) {
           <p>Temperature: ${forecast.main.temp}°F</p>
           <p>Wind Speed: ${forecast.wind.speed} mph</p>
           <p>Humidity: ${forecast.main.humidity}%</p>
-          <p>Weather: ${forecast.weather[0].description}</p>
         `;
       weatherContainer.appendChild(forecastElement);
     }
@@ -78,7 +76,6 @@ document.getElementById('search-button').addEventListener('click', () => {
             <p>Temperature: ${data.main.temp}°F</p>
             <p>Wind Speed: ${data.wind.speed} mph</p>
             <p>Humidity: ${data.main.humidity}%</p>
-            <p>Weather: ${data.weather[0].description}</p>
     `;
         localStorage.setItem('weatherData', JSON.stringify(data));// Store weather data in local storage
       });
@@ -113,7 +110,6 @@ document.getElementById('search-button').addEventListener('click', () => {
         <p>Temperature: ${forecast.main.temp}°F</p>
         <p>Wind Speed: ${forecast.wind.speed} mph</p>
         <p>Humidity: ${forecast.main.humidity}%</p>
-        <p>Weather: ${forecast.weather[0].description}</p>
       `;
             weatherContainer.appendChild(forecastElement);
           }
