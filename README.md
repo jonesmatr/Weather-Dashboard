@@ -4,7 +4,7 @@ This is a simple weather dashboard application that allows users to search for w
 
 The site can be accessed [here](https://jonesmatr.github.io/Weather-Dashboard/).
 
-![Work Day Scheduler](./assets/images/Website-Screenshot.jpg)
+![Weather Dashboard](./assets/images/Website-Screenshot.jpg)
 
 ## Table of Contents
 
