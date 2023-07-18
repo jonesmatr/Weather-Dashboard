@@ -4,7 +4,7 @@
 ## Description
 This is a simple weather dashboard application that allows users to search for weather information for different cities. The application displays the current weather for a selected city and provides a 5-day forecast. It will also display the current weather and 5-day forecast for your current location if your browser allows your location to be shared.
 
-Click on the link The site can be accessed [here](https://jonesmatr.github.io/Weather-Dashboard/).
+The site can be accessed [here](https://jonesmatr.github.io/Weather-Dashboard/).
 ![Weather Dashboard](./assets/images/Website-Screenshot.jpg) 
 
 ## Table of Contents
@@ -19,6 +19,7 @@ Click on the link The site can be accessed [here](https://jonesmatr.github.io/We
 To use the Weather Dashboard, follow these steps:
 1. Clone the repository to your local machine using the following command: git clone https://github.com/jonesmatr/Weather-Dashboard.git
 2. Open the `index.html` file in a web browser.
+ 
 
 ## Usage
 To use the weather dashboard, follow these steps:
