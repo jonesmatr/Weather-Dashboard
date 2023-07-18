@@ -43,7 +43,8 @@ async function askQuestions() {
         {
             type: "input",
             name: "link",
-            message: "Please provide any relevant links for your project."
+            message: "Please provide any relevant links for your project.",
+            additionalSteps: true
         },
         {
             type: "input",

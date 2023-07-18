@@ -4,7 +4,8 @@
 ## Description
 This is a simple weather dashboard application that allows users to search for weather information for different cities. The application displays the current weather for a selected city and provides a 5-day forecast. It will also display the current weather and 5-day forecast for your current location if your browser allows your location to be shared.
 
-Click on the link [here](https://jonesmatr.github.io/Weather-Dashboard/). 
+Click on the link The site can be accessed [here](https://jonesmatr.github.io/Weather-Dashboard/).
+![Weather Dashboard](./assets/images/Website-Screenshot.jpg) 
 
 ## Table of Contents
 * [Installation](#installation)
@@ -43,7 +44,6 @@ To test the application:
 1. Make sure you have followed the installation steps.
 2. Run command node index.js.
 3. Enter the requested project details to generate a README file.
- 
 
 ## Questions
 If you have any questions, please feel free to reach out:
